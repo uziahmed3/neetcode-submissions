@@ -1,0 +1,23 @@
+class Solution:
+    def longestMonotonicSubarray(self, nums: List[int]) -> int:
+        
+        inc = 1
+        dec = 1
+        m = 1
+
+        for i in range(1,len(nums)):
+            if nums[i] < nums[i - 1]:
+                dec += 1
+                inc = 1
+            elif nums[i] > nums[i - 1]:
+                inc += 1
+                dec = 1
+            else:
+                m = max(dec,inc,m)
+                dec = 1
+                inc = 1
+            m = max(dec,inc,m)
+        return m
+
+
+       
